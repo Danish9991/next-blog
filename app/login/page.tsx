@@ -2,6 +2,7 @@
 
 import axios from 'axios';
 import React, { useState, FormEvent } from 'react';
+import {signIn} from 'next-auth/react'
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Input from '../../components/input/input';
@@ -33,8 +34,18 @@ const page = () => {
      * handleSubmit function will send the request to server with form values
      * @param event 
      */
-    const handleSubmit = (event: FormEvent) => {
+    const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
+        const result =  await signIn('credentials', {
+            ...state,
+            redirect : false
+        })
+        
+        if(result?.error){
+            throw new Error('wrong credentials')
+        }else{
+            router.push('/')
+        }
 
     }
 

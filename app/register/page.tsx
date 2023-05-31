@@ -41,8 +41,22 @@ const page = () => {
         event.preventDefault();
 
         if (!state.email || !state.password || !state.name) {
-            toast.success('provide all details')
+            toast.success('fill all fields')
         }
+
+        axios.post('/api/register', state)
+            .then(() => {
+                router.refresh()
+            })
+            .then(() => {
+                router.push('/login')
+            })
+            .catch((err: any) => {
+                console.log(err);
+            })
+            .finally(() =>{
+                
+            })
 
     }
 
