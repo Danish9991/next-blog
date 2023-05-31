@@ -39,9 +39,9 @@ const page = () => {
      */
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
-        
-        if(!state.email || !state.password || !state.name){
-          toast.success('provide all details')
+
+        if (!state.email || !state.password || !state.name) {
+            toast.success('provide all details')
         }
 
     }
