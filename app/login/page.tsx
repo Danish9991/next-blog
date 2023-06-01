@@ -44,6 +44,7 @@ const page = () => {
         if(result?.error){
             throw new Error('wrong credentials')
         }else{
+            router.refresh();
             router.push('/')
         }
 
