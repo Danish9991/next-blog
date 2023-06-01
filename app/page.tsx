@@ -1,12 +1,22 @@
-'use client'
-import { toast } from 'react-toastify';
+import Image from "next/image";
+import { getCurrentUser } from "./actions/getCurrentUser";
+import { getBlogs } from "./actions/getBlogs";
+import SingleBlog from "@/components/SingleBlog";
 
-export default function Home() {
-  toast.success('provide all details');
+export default async function Home() {
+
+  const currentUser = await getCurrentUser();
+  const blogs = await getBlogs();
+
   return (
-    <div>
-      <h1 className="text-red-500">Hello from Next</h1>
-      
-    </div>
+    <main className="flex min-h-screen flex-col items-center justify-between p-24 gap-4">
+        {blogs.map((item:any) => (
+          <SingleBlog
+          key={item.id}
+          data={item}
+          currentUser={currentUser}
+          />
+        ))}
+    </main>
   )
 }
