@@ -1,11 +1,13 @@
 'use client'
 
 import Image from "next/image";
-import {  safeUser } from "@/types/type"
+import {  safeUser } from "@/types/type";
 import axios from "axios";
-import { useRouter } from 'next/navigation'
-import {RiDeleteBin5Line} from 'react-icons/ri'
-import {BsFillPencilFill} from 'react-icons/bs'
+import { useRouter } from 'next/navigation';
+import {RiDeleteBin5Line} from 'react-icons/ri';
+import {BsFillPencilFill} from 'react-icons/bs';
+
+import { toast } from "react-hot-toast";
 
 interface BlogProps {
     key:string
@@ -22,6 +24,7 @@ export default function SingleBlog({key,data,currentUser}:BlogProps) {
 
         axios.delete(`/api/blogs/${data.id}`)
         .then(() => {
+          toast.error('post removed');
           router.refresh()
         })
         .catch((error) => {

@@ -7,8 +7,6 @@ import Link from 'next/link';
 import Input from '../../components/input/input';
 import { toast } from 'react-hot-toast'
 
-
-
 interface InitialStateProps {
     name: string,
     email: string,
