@@ -1,20 +1,20 @@
-import prisma from '../lib/prismadb'
+import prisma from "../lib/prismadb";
 
 export const getBlogs = async () => {
-    try {
-        const blogs = await prisma.blog.findMany({
-            orderBy : {
-                createdAt : 'desc'
-            }
-        });
+  try {
+    const blogs = await prisma.blog.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
 
-        const safeBlogs = blogs.map((blog) => ({
-            ...blog,
-            createdAt : blog.createdAt.toISOString()
-        }))
+    const safeBlogs = blogs.map((blog) => ({
+      ...blog,
+      createdAt: blog.createdAt.toISOString(),
+    }));
 
-        return safeBlogs
-    } catch (error : any) {
-        throw new Error(error)
-    }
-}
+    return safeBlogs;
+  } catch (error: any) {
+    throw new Error(error);
+  }
+};

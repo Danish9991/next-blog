@@ -17,7 +17,7 @@ const Navbar : React.FC<userMenuProps> = ({ currentUser }) => {
 
             <div className='flex gap-4'>
             <Link href='/'>Home</Link>
-            <Link href='/create'>Create</Link>
+            <Link href={currentUser ? '/create' : '/register'}>Create</Link>
             {currentUser ? <button onClick={() => signOut()}>Sign out</button> : <Link href='/register'>Register</Link>}
             </div>
         </nav>
